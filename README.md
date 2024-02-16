@@ -1,3 +1,7 @@
+本项目为自用学习项目
+原项目地址：https://cui-jiacai.gitbook.io/whale-market/
+
+
 # 框架代码的说明
 
 
