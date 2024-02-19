@@ -3,5 +3,7 @@
 #include <stdio.h>
 
 int main() {
-    
+    char ch[10];
+    getDate(ch);
+    printf("%s\n", ch);
 }
