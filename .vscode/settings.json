@@ -1,8 +1,0 @@
-{
-    "C_Cpp.default.compilerPath": "/usr/bin/gcc",
-    "files.associations": {
-        "*.cpp": "cpp",
-        "stdio.h": "c",
-        "hint.h": "c"
-    }
-}
