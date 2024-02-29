@@ -12,3 +12,11 @@ void genID(char* dest, char type);
  * @param dest 储存日期的目标字符串
  */
 void getDate(char* dest);
+
+#define print_header \
+    printf("%s\n", divide);\
+    printf("%s\n", header);\
+    printf("%s\n", divide);
+
+#define print_divide \
+    printf("%s\n", divide);
