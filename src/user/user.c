@@ -88,7 +88,7 @@ int deleteUser(const char* id, const char* who) {
  * @param i 用户下标
  */
 static void printUser(int i) {
-    printf("|%-10s |%-10s |%-10s |%-10s |%-10.1f |\n", users[i].id, users[i].name, \
+    printf("|%-10s |%-10s |%-10s |%-10s |%-10.1f |\n", users[i].id, users[i].name,
 users[i].contact, users[i].address, users[i].balance);
 }
 
@@ -98,4 +98,17 @@ void printUsers() {
         printUser(i);
         print_divide
     }
+}
+
+int checkPass(const char* name, const char* passwd, int* idx) {
+    *idx = searchUserName(name);
+    if (*idx == -1) return 0;
+    return strcmp(users[*idx].passwd, passwd) == 0;
+}
+
+int userTopUp(const char* id, double m) {
+    int idx = searchUserID(id);
+    if (idx == -1) return 0;
+    users[idx].balance += m;
+    return 1;
 }
