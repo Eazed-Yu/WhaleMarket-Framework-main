@@ -1,3 +1,5 @@
+#ifndef _MENU_H_
+#define _MENU_H_
 typedef enum {MAIN, ADMIN, USER, BUYER, SELLER, INFO, MODIFY, GOOD} Menu;
 /**
  * @brief 菜单的作用是给出提示信息并获取用户输入
@@ -8,3 +10,5 @@ typedef enum {MAIN, ADMIN, USER, BUYER, SELLER, INFO, MODIFY, GOOD} Menu;
 int menu(Menu type);
 
 extern const int optionNum[];
+
+#endif

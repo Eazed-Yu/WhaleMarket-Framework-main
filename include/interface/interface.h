@@ -8,6 +8,9 @@
 #define _INTERFACE_H_
 typedef void (*HANDLER)(void);
 extern int curUser;
+extern int curGood;
+
+#define fail { failureMessage(); return; }
 
 #define get_username_passwd\
     char username[MAX_LEN];\
@@ -71,6 +74,24 @@ static void search() {\
         scanf("%s", buffer);\
         m = atof(buffer);\
     }
+    
+#define make_modify(TYPE, W, HO) \
+static void modify_##TYPE() {\
+    char buffer[MAX_LEN];\
+    printf("Please input new %s: ", #TYPE);\
+    scanf("%s", buffer);\
+    W##HO* x = get##W##HO(cur##W##HO);\
+    strcpy(x->TYPE, buffer);\
+    successMessage();\
+}
+
+#define make_my(TYPE, W, HO) \
+static void my##TYPE() {\
+    print##TYPE##4##W##HO(getUser(curUser)->id);\
+    successMessage();\
+}
+
+
 
 /* An interface gets user input with corresponding menu and handles it. */
 

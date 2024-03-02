@@ -1,9 +1,17 @@
+#include "interface/interface.h"
 #include "tools/hint.h"
-#include "tools/info.h"
-#include <stdio.h>
 
 int main() {
-    char ch[10];
-    getDate(ch);
-    printf("%s\n", ch);
+    pullUsers();
+    pullGoods();
+    pullOrders();
+
+    welcomeMessage();
+    MAIN_Interface();
+    exitingMessage();
+    
+    pushUsers();
+    pushGoods();
+    pushOrders();
+    return 0;
 }
