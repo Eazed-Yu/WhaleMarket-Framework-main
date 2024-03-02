@@ -1,12 +1,76 @@
 // interface.h
-#ifndef _INTERFACE_H_
-#define _INTERFACE_H_
-typedef void (*HANDLER)(void);
 #include "tools/hint.h"
 #include "menu/menu.h"
 #include "user/user.h"
 #include "good/good.h"
 #include "order/order.h"
+#ifndef _INTERFACE_H_
+#define _INTERFACE_H_
+typedef void (*HANDLER)(void);
+extern int curUser;
+
+#define get_username_passwd\
+    char username[MAX_LEN];\
+    char passwd[MAX_LEN];\
+    printf ("Username: ");\
+    scanf("%s", username);\
+    printf ("Password: ");\
+    scanf("%s", passwd);
+
+#define make_login(T, YPE, cond)\
+static void T##YPE##_Login() {\
+    get_username_passwd\
+    if (cond) { T##YPE##_Interface(); return ; }\
+    failureMessage();\
+}
+
+
+void inv();
+
+#define make_interface(T, YPE)\
+void T##YPE##_Interface() {\
+    successMessage();\
+    int op = menu(T##YPE);\
+    while (op != optionNum[T##YPE]) {\
+        loadingMessage();\
+        handler[op - 1]();\
+        op = menu(T##YPE);\
+    }\
+    loadingMessage();\
+    successMessage();\
+}
+
+#define make_all(T, YPE)\
+static void all##T##YPE##s() { print##T##YPE##s(); successMessage(); }
+
+#define make_ban(T, YPE, Name, Who)\
+static void ban##T##YPE() {\
+    char id[MAX_LEN];\
+    printf("Please input %s ID to be banned: ", Name);\
+    scanf("%s", id);\
+    if (delete##T##YPE(id, Who)) successMessage();\
+    else failureMessage();\
+}
+
+#define make_search(WHO)\
+static void search() {\
+    char buffer[MAX_LEN];\
+    printf("Please input Good Name to search: ");\
+    scanf("%s", buffer);\
+    loadingMessage();\
+    searchGoodName4##WHO(buffer);\
+    successMessage();\
+}
+
+#define check_double\
+    double m = atof(buffer);\
+    while (1) {\
+        if (m > 0) break;\
+        illegalMessage();\
+        printf("Please try again: ");\
+        scanf("%s", buffer);\
+        m = atof(buffer);\
+    }
 
 /* An interface gets user input with corresponding menu and handles it. */
 

@@ -1,4 +1,4 @@
-#include "menu/meun.h"
+#include "menu/menu.h"
 #include "config.h"
 #include "tools/color.h"
 #include <stdio.h>
